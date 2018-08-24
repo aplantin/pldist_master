@@ -1,3 +1,11 @@
+#' Paired or longitudinal Gower distances 
+#'
+#' @param tsf.data Transformed OTU table and metadata (from function pl.transform)
+#' @param binary Logical indicating whether to use the binary version of the distance 
+#' @return Returns an n x n distance matrix. 
+#'
+#' @export
+#' 
 gower <- function(tsf.data, binary) {
   if (binary) { dat = tsf.data$dat.binary
   } else { dat = tsf.data$dat.quant }
