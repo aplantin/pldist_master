@@ -1,9 +1,27 @@
+#' flexsign
+#' 
+#' Sign function that considers 0 both positive and negative. Returns 1 if the two numbers are the same sign, 0 otherwise. Vectorized (compares vectors elementwise). 
+#'
+#' @param v1 First vector
+#' @param v2 Second vector
+#' @return Returns an n x n distance matrix. 
+#'
+#' @export
+#' 
 flexsign <- function(v1, v2) {
   return(as.numeric( (v1 >= 0 & v2 >= 0) | (v1 <= 0 & v2 <= 0) ))
 }
 
 
 #' Paired or longitudinal Jaccard distances 
+#' 
+#' The distances are calculated as follows, where d_k^X is the within-subject 
+#'     measure of change appropriate to the setting (paired/longitudinal and 
+#'     quantitative/qualitative), as described in the full package documentation 
+#'     and vignette. 
+#' Paired, qualitative: D_{AB} = 1 - {\sum_k I(d_k^A = d_k^B) I(d_k^A \neq 0)}/{\sum_k [I(d_k^A \neq 0) + I(d_k^B \neq 0)]}  
+#' Paired, quantitative: D_{AB} = 1 - {\sum_k \min(|d_k^A|, |d_k^B|) \, I(\sgn(d_k^A) = \sgn(d_k^B))}/{\sum_k \max(|d_k^A|, |d_k^b|)}$ 
+#' Longitudinal: D_{AB} = 1 - (\sum_k \min(d_k^A, d_k^B))/(\sum_k \max(d_k^A, d_k^B)) 
 #'
 #' @param tsf.data Transformed OTU table and metadata (from function pl.transform)
 #' @param paired Logical indicating whether paired analysis is desired 

@@ -92,7 +92,10 @@ pl.transform <- function(otus, metadata, paired) {
   }
   if (paired) { type = "paired" 
   } else if (balanced) { type = "balanced longitudinal"
-  } else { type = "unbalanced longitudinal (WARNING: this transformation is not recommended for strongly unbalanced designs!)" }
+  } else { 
+    type = "unbalanced longitudinal (WARNING: this transformation is not recommended for strongly unbalanced designs!)" 
+    warning("WARNING: this transformation is not recommended for strongly unbalanced designs!")
+    }
    
   ## return 
   return(list(tsf.data = res, type = type))

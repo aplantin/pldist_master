@@ -21,7 +21,6 @@
 #'    with the K specified gamma values plus the unweighted distance. The unweighted dissimilarity 
 #'    matrix may be accessed by result[,,"d_UW"], and the generalized dissimilarities by result[,,"d_G"] 
 #'    where G is the particular choice of gamma.
-#' @importFrom ape is.rooted drop.tip rtree
 #'
 #' @export
 #' 
