@@ -2,6 +2,16 @@ flexsign <- function(v1, v2) {
   return(as.numeric( (v1 >= 0 & v2 >= 0) | (v1 <= 0 & v2 <= 0) ))
 }
 
+
+#' Paired or longitudinal Jaccard distances 
+#'
+#' @param tsf.data Transformed OTU table and metadata (from function pl.transform)
+#' @param paired Logical indicating whether paired analysis is desired 
+#' @param binary Logical indicating whether to use the binary version of the distance 
+#' @return Returns an n x n distance matrix. 
+#'
+#' @export
+#' 
 jaccard <- function(tsf.data, paired, binary) {
   if (binary) { dat = tsf.data$dat.binary
   } else { dat = tsf.data$dat.quant }
