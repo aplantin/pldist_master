@@ -1,0 +1,12 @@
+LUniFrac                LUniFrac
+PUniFrac                PUniFrac
+braycurtis              Paired or longitudinal Bray-Curtis distances
+counts2props            counts2props
+flexsign                flexsign
+gower                   Paired or longitudinal Gower distances
+jaccard                 Paired or longitudinal Jaccard distances
+kulczynski              Paired or longitudinal Kulczynski distances
+pl.transform            tsf_paired
+pldist                  pldist
+tsf_long                tsf_paired
+tsf_paired              tsf_paired
