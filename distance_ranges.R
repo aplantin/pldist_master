@@ -1,4 +1,4 @@
-setwd("~/Documents/Research/pldist")
+setwd("~/Documents/Research/Methods_indiv/2018_LUniFrac/Code/pldist/pldist/R/")
 source("./pltransform.R")
 source("./pl_braycurtis.R")
 source("./pl_jaccard.R")
@@ -23,7 +23,7 @@ gen.data.paired <- function(seed, nsubj, notus, nzero, maxct = 2500) {
   toy.props <- counts2props(toy.otus)
   toy.meta <- data.frame(subjID = rep(paste("subj", 1:nsubj, sep = ""), each = 2), 
                          sampID = paste(rep(paste("subj", 1:nsubj, sep = ""), each = 2), rep(c("a", "b"), nsubj), sep = ""), 
-                         group  = rep(c(1,2), nsubj), stringsAsFactors = FALSE)
+                         time  = rep(c(1,2), nsubj), stringsAsFactors = FALSE)
   rownames(toy.otus) = rownames(toy.props) = toy.meta$sampID
   colnames(toy.otus) = paste("otu", 1:notus, sep = "")
   return(list(otus = toy.otus, metadata = toy.meta))
@@ -71,9 +71,6 @@ do.many.paired <- function(bigB, nsubj, notus, nzero, maxct) {
 
 simres <- do.many.paired(10, nsubj = 10, notus = 20, nzero = 100, maxct = 2500)  
 lapply(simres, range)
-
-
-
 
 
 #### Tests for balanced longitudinal data
