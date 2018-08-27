@@ -1,4 +1,4 @@
-context("dissimilarities")
+context("dissimilarities of identical subjects")
 
 test_that("dissimilarities are zero with identical changes", {
   otus <- matrix(nrow = 4, ncol = 3) 

@@ -151,11 +151,11 @@ and the corresponding quantitative measure as
 $$  D_{AB} = 1 - \sum_k \min(p_k^A, p_k^B) $$ 
 
 The paired versions are 
-$$ \mbox{Qualitative:  } \qquad D_{AB} = 1 - \frac{1}{m} \sum_k I(d_k^A = d_k^B) I(d_k^A \neq 0) $$ 
+$$ \mbox{Qualitative:  } \qquad D_{AB} = 1 - \frac{1}{m} \sum_k I(d_k^A = d_k^B) $$ 
 and 
-$$ \mbox{Quantitative:  } \qquad  D_{AB} = 1 - \frac{2}{m} \sum_k \min(|d_k^A|, |d_k^B|) \, I\lbrace \mbox{sgn}(d_k^A) = \mbox{sgn}(d_k^B) \rbrace. $$ 
+$$ \mbox{Quantitative:  } \qquad  D_{AB} = 1 - \frac{1}{2} \sum_k \left(\frac{1}{\sum_k |d_k^A|} + \frac{1}{\sum_k |d_k^B|} \right) \min(|d_k^A|, |d_k^B|)\, I\lbrace \mbox{sgn}(d_k^A) = \mbox{sgn}(d_k^B) \rbrace. $$ 
 Similarly, both qualitative and quantitative longitudinal versions may be calculated as 
-$$ D_{AB} = 1 - \frac{1}{m} \sum_k \min(d_k^A, d_k^B). $$ 
+$$ D_{AB} = 1 - \frac{1}{2} \sum_k \left(\frac{1}{\sum_k d_k^A} + \frac{1}{\sum_k d_k^B} \right) \min(d_k^A, d_k^B). $$ 
 
 ### Gower 
 
