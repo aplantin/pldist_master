@@ -93,8 +93,8 @@ tsf_long <- function(otus, metadata) {
         abs((subj.otu[(j+1), nonz] - subj.otu[j, nonz])/(subj.otu[(j+1), nonz] + subj.otu[j, nonz]))
       cumprop = cumprop + subj.otu[(j+1), ]
     }
-    dk.uw = dk.uw/(2*qi)
-    dk.g = dk.g/(2*qi)
+    dk.uw = dk.uw/(qi - 1)
+    dk.g = dk.g/(qi - 1)
     cumprop = cumprop/qi 
     
     ## Fill row 
@@ -149,7 +149,7 @@ counts2props <- function(x) {
 #'     unbalanced longitudinal) with a warning if unbalanced longitudinal.} 
 #'     
 #' 
-pl.transform <- function(otus, metadata, paired) {
+pltransform <- function(otus, metadata, paired) {
   ## Check that otus are proportions 
   if (all(apply(otus, 1, sum) != 1)) {
     otus <- counts2props(otus) 

@@ -1,4 +1,5 @@
-setwd("~/Documents/Research/Methods_indiv/2018_LUniFrac/Code/pldist/pldist/R/")
+#setwd("~/Documents/Research/Methods_indiv/2018_LUniFrac/Code/pldist/pldist/R/")
+setwd("~/Documents/Research/pldist/pldist/R/")
 source("./pltransform.R")
 source("./pl_braycurtis.R")
 source("./pl_jaccard.R")
@@ -88,7 +89,7 @@ gen.data.longit <- function(seed, nsubj, ntimes = 4, notus, propzero = 0.5, maxc
   toy.meta <- data.frame(subjID = rep(paste("subj", 1:nsubj, sep = ""), each = ntimes), 
                          sampID = paste(rep(paste("subj", 1:nsubj, sep = ""), each = ntimes), 
                                         rep(letters[1:ntimes], nsubj), sep = ""), 
-                         group  = rep(1:ntimes, nsubj), stringsAsFactors = FALSE)
+                         time  = rep(1:ntimes, nsubj), stringsAsFactors = FALSE)
   rownames(toy.otus) = toy.meta$sampID
   colnames(toy.otus) = paste("otu", 1:notus, sep = "")
   return(list(otus = toy.otus, metadata = toy.meta))
@@ -127,7 +128,7 @@ do.many.longit <- function(bigB, nsubj, ntimes, notus, propzero, maxct) {
   return(out)
 }
 
-simres <- do.many.longit(10, nsubj = 3, ntimes = 4, notus = 10, propzero = 0.5, maxct = 2500)
+simres <- do.many.longit(1000, nsubj = 10, ntimes = 4, notus = 20, propzero = 0.8, maxct = 2500)
 lapply(simres, range)
 
 
@@ -150,7 +151,7 @@ gen.data.unbal.longit <- function(seed, nsubj, maxtimes = 4, maxdiff = 5, notus,
   toy.meta <- data.frame(subjID = unlist(sapply(1:nsubj, FUN = function(i) rep(paste("subj", i, sep = ""), ntimes[i]), simplify = FALSE)), 
                          sampID = paste(unlist(sapply(1:nsubj, FUN = function(i) rep(paste("subj", i, sep = ""), ntimes[i]), simplify = FALSE)), 
                                         unlist(sapply(1:nsubj, FUN = function(i) letters[1:ntimes[i]], simplify = FALSE)), sep = ""), 
-                         group  = unlist(sapply(1:nsubj, FUN = function(i) cumsum(c(1, sample(1:maxdiff, ntimes[i]-1, replace = TRUE))), simplify = FALSE)), 
+                         time  = unlist(sapply(1:nsubj, FUN = function(i) cumsum(c(1, sample(1:maxdiff, ntimes[i]-1, replace = TRUE))), simplify = FALSE)), 
                          stringsAsFactors = FALSE)
   rownames(toy.otus) = toy.meta$sampID
   colnames(toy.otus) = paste("otu", 1:notus, sep = "")
@@ -190,7 +191,7 @@ do.many.unbal.longit <- function(bigB, nsubj, maxtimes, maxdiff, notus, propzero
   return(out)
 }
 
-simres <- do.many.unbal.longit(100, nsubj = 10, maxtimes = 4, maxdiff = 5, notus = 20, propzero = 0.5, maxct = 2500)
+simres <- do.many.unbal.longit(1000, nsubj = 10, maxtimes = 4, maxdiff = 5, notus = 20, propzero = 0.5, maxct = 2500)
 lapply(simres, range)
 
 

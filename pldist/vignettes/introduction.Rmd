@@ -135,7 +135,7 @@ $$D_{AB} = 1 - \frac{\sum_k \min(p_k^A, p_k^B)}{\sum_k \max(p_k^A, p_k^B)}. $$
 The Jaccard similarity is the number (or relative abundances) of taxa shared between subjects divided by the total number of unique taxa observed, and this is subtracted from one to obtain the distance. 
 
 For paired data, a similar concept is to look at the number (or relative abundances) of changes in taxon abundance that are shared between subjects divided by the total observed changes. Hence, the qualitative version is 
-$$ D_{AB} = 1 - \frac{\sum_k I(d_k^A = d_k^B) I(d_k^A \neq 0)}{\sum_k \left[ I(d_k^A \neq 0) + I(d_k^B \neq 0) \right] } $$
+$$ D_{AB} = 1 - \frac{\sum_k I(d_k^A = d_k^B) I(d_k^A \neq 0)}{\sum_k \left[ I(d_k^A \neq 0) \mbox{ or } I(d_k^B \neq 0) \right] } $$
 and the quantitative version 
 $$ D_{AB} = 1 - \frac{\sum_k \min(|d_k^A|, |d_k^B|) \, I\lbrace \mbox{sgn}(d_k^A) = \mbox{sgn}(d_k^B) \rbrace}{\sum_k \max(|d_k^A|, |d_k^b|)}$$
 where sgn($\cdot$) is a generalized sign operator such that $\mbox{sgn}(d_k^A) = \mbox{sgn}(d_k^B)$ is TRUE if either $d_k^A$ or $d_k^B$ is zero or if both have the same non-zero sign. 
