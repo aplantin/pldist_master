@@ -111,15 +111,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># install.packages(&quot;devtools&quot;) </span>
 <span class="kw">library</span>(devtools) 
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;aplantin/pldist&quot;</span>)
-<span class="co">#&gt; Downloading GitHub repo aplantin/pldist@master</span>
-<span class="co">#&gt; from URL https://api.github.com/repos/aplantin/pldist/zipball/master</span>
-<span class="co">#&gt; Installing pldist</span>
-<span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
-<span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
-<span class="co">#&gt;   '/private/var/folders/v3/mjzl4t5517j0vl995n6szx9w0000gq/T/RtmpYgFNuG/devtoolse1e551420073/aplantin-pldist-b5ea8e0'  \</span>
-<span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.5/Resources/library'  \</span>
-<span class="co">#&gt;   --install-tests</span>
-<span class="co">#&gt; </span></code></pre></div>
+<span class="co">#&gt; Skipping install of 'pldist' from a github remote, the SHA1 (b5ea8e08) has not changed since last install.</span>
+<span class="co">#&gt;   Use `force = TRUE` to force installation</span></code></pre></div>
 </div>
 <div id="usage-guide" class="section level2">
 <h2>Usage Guide</h2>
@@ -182,7 +175,7 @@ d_k^A(t_1, t_2) = \frac{1}{2} \cdot \frac{p_k^{(A, t_2)} - p_k^{(A, t_1)}}{p_k^{
 <div id="kulczynski" class="section level3">
 <h3>Kulczynski</h3>
 <p>Each Kulczynski metric is essentially the numerator of the corresponding Jaccard metric. At a single time point, the qualitative Kulczynski distance is calculated as <span class="math display">\[  D_{AB} = 1 - \frac{1}{2} \left( \frac{|A \cap B|}{|A|} + \frac{|A \cap B|}{|B|} \right) \]</span> and the corresponding quantitative measure as <span class="math display">\[  D_{AB} = 1 - \sum_k \min(p_k^A, p_k^B) \]</span></p>
-<p>The paired versions are <span class="math display">\[ \mbox{Qualitative:  } \qquad D_{AB} = 1 - \frac{1}{m} \sum_k I(d_k^A = d_k^B) \]</span> and <span class="math display">\[ \mbox{Quantitative:  } \qquad  D_{AB} &amp;= 1 - \frac{1}{2} \sum_k \left(\frac{1}{\sum_k |d_k^A|} + \frac{1}{\sum_k |d_k^B|} \right) \min(|d_k^A|, |d_k^B|)\, I\lbrace \sgn(d_k^A) = \sgn(d_k^B) \rbrace. \]</span> Similarly, both qualitative and quantitative longitudinal versions may be calculated as <span class="math display">\[ D_{AB} = 1 - \frac{1}{2} \sum_k \left(\frac{1}{\sum_k d_k^A} + \frac{1}{\sum_k d_k^B} \right) \min(d_k^A, d_k^B). \]</span></p>
+<p>The paired versions are <span class="math display">\[ \mbox{Qualitative:  } \qquad D_{AB} = 1 - \frac{1}{m} \sum_k I(d_k^A = d_k^B) \]</span> and <span class="math display">\[ \mbox{Quantitative:  } \qquad  D_{AB} = 1 - \frac{1}{2} \sum_k \left(\frac{1}{\sum_k |d_k^A|} + \frac{1}{\sum_k |d_k^B|} \right) \min(|d_k^A|, |d_k^B|)\, I\lbrace \mbox{sgn}(d_k^A) = \mbox{sgn}(d_k^B) \rbrace. \]</span> Similarly, both qualitative and quantitative longitudinal versions may be calculated as <span class="math display">\[ D_{AB} = 1 - \frac{1}{2} \sum_k \left(\frac{1}{\sum_k d_k^A} + \frac{1}{\sum_k d_k^B} \right) \min(d_k^A, d_k^B). \]</span></p>
 </div>
 <div id="gower" class="section level3">
 <h3>Gower</h3>

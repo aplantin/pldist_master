@@ -138,6 +138,7 @@ counts2props <- function(x) {
 #' @param paired Logical indicating whether to use the paired version of the metric (TRUE) or the 
 #'     longitudinal version (FALSE). Paired analyis is only possible when there are exactly 2 
 #'     unique time points/identifiers for each subject or pair. 
+#' @param check.input Logical indicating whether to check input values (default TRUE). 
 #' 
 #' @return List with the following elements. Both data matrices have subject identifiers 
 #'     as row names and OTU identifiers as column names.  
@@ -149,10 +150,12 @@ counts2props <- function(x) {
 #'     unbalanced longitudinal) with a warning if unbalanced longitudinal.} 
 #'     
 #' 
-pltransform <- function(otus, metadata, paired) {
-  ## Check that otus are proportions 
-  if (all(apply(otus, 1, sum) != 1)) {
-    otus <- counts2props(otus) 
+pltransform <- function(otus, metadata, paired, check.input = TRUE) {
+  if (check.input) {
+    okdat <- check_input(otus, metadata, paired)
+    otus <- okdat$otus 
+    metadata <- okdat$metadata 
+    remove(okdat) 
   }
   
   ## calculate appropriate transformations 

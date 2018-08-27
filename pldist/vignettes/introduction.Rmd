@@ -77,11 +77,12 @@ data("unbal.long.otus"); data("unbal.long.meta")
 
 ### Data Transformations 
 
-The data transformation function is 
+The data transformation function is `pltransform`. The transformations are provided as a separate function so that if desired, paired or longitudinally transformed data may be included in other (distance-based or non-distance-based) analyses. This function **does not** need to be called prior to utilizing the distance function; all transformations (and input checking) are included within the distance function. 
 
-```{r transform-paired} 
+The output includes a qualitative (binary) 
 
-
+```{r transform} 
+pltransform(paired.otus, paired.metadata, paired = TRUE, check.input = TRUE)
 ``` 
 
 ### Non-Phylogenetic Distances 

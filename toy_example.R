@@ -1,5 +1,6 @@
-setwd("~/Documents/Research/pldist")
+setwd("~/Documents/Research/pldist/pldist/R")
 source("./pltransform.R")
+source("./check_input.R")
 
 ## Test paired transformations
 set.seed(1)
@@ -7,13 +8,13 @@ toy.otus <- matrix(sample(c(1:9, 0, 0, 0)), nrow = 4, ncol = 3)
 toy.props <- counts2props(toy.otus)
 toy.meta <- data.frame(subjID = c("subj1", "subj1", "subj2", "subj2"), 
                        sampID = c("samp1a", "samp1b", "samp2b", "samp2a"), 
-                       group  = c(1, 2, 2, 1), stringsAsFactors = FALSE); toy.meta 
+                       time  = c(1, 2, 2, 1), stringsAsFactors = FALSE); toy.meta 
 rownames(toy.otus) = rownames(toy.props) = toy.meta$sampID
 
 
 toy.props 
-pl.transform(toy.props, toy.meta, paired = FALSE)
-pl.transform(toy.otus, toy.meta)
+pltransform(toy.props, toy.meta, paired = FALSE)
+pltransform(toy.otus, toy.meta, paired = TRUE)
 
 
 ## Test longitudinal (un)balanced transformations 
