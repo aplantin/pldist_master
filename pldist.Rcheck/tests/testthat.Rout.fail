@@ -1,6 +1,6 @@
 
-R version 3.4.3 (2017-11-30) -- "Kite-Eating Tree"
-Copyright (C) 2017 The R Foundation for Statistical Computing
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -19,5 +19,25 @@ Type 'q()' to quit R.
 > library(pldist)
 > 
 > test_check("pldist")
-Error: No tests found for pldist
+── 1. Error: dissimilarities give expected results (@test-dissimilarities.R#15) 
+subscript out of bounds
+1: .handleSimpleError(function (e) 
+   {
+       handled <<- TRUE
+       test_error <<- e
+       options(expressions = expressions_opt_new)
+       on.exit(options(expressions = expressions_opt), add = TRUE)
+       e$expectation_calls <- frame_calls(11, 2)
+       test_error <<- e
+       register_expectation(e)
+       e$handled <- TRUE
+       test_error <<- e
+   }, "subscript out of bounds", quote(`[<-`(`*tmp*`, 5, , value = c(0.2, 0, 0.8)))) at testthat/test-dissimilarities.R:15
+2: eval(code, test_env)
+
+══ testthat results  ═══════════════════════════════════════════════════════════
+OK: 38 SKIPPED: 0 FAILED: 1
+1. Error: dissimilarities give expected results (@test-dissimilarities.R#15) 
+
+Error: testthat unit tests failed
 Execution halted

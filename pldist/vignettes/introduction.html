@@ -109,10 +109,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Currently, the package may only be downloaded and installed from GitHub using the <code>devtools</code> package. Type the following command in your R console:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># only run if you don't have devtools installed </span>
 <span class="co"># install.packages(&quot;devtools&quot;) </span>
-<span class="kw">library</span>(devtools) 
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;aplantin/pldist&quot;</span>)
-<span class="co">#&gt; Skipping install of 'pldist' from a github remote, the SHA1 (b5ea8e08) has not changed since last install.</span>
-<span class="co">#&gt;   Use `force = TRUE` to force installation</span></code></pre></div>
+<span class="co">#&gt; Downloading GitHub repo aplantin/pldist@master</span>
+<span class="co">#&gt; from URL https://api.github.com/repos/aplantin/pldist/zipball/master</span>
+<span class="co">#&gt; Installing pldist</span>
+<span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
+<span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
+<span class="co">#&gt;   '/private/var/folders/v3/mjzl4t5517j0vl995n6szx9w0000gq/T/Rtmp1EQRXS/devtools121022fd5ee90/aplantin-pldist-4e9c178'  \</span>
+<span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.5/Resources/library'  \</span>
+<span class="co">#&gt;   --install-tests</span>
+<span class="co">#&gt; </span></code></pre></div>
 </div>
 <div id="usage-guide" class="section level2">
 <h2>Usage Guide</h2>
@@ -127,7 +133,9 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <span class="kw">data</span>(<span class="st">&quot;unbal.long.otus&quot;</span>); <span class="kw">data</span>(<span class="st">&quot;unbal.long.meta&quot;</span>)</code></pre></div>
 <div id="data-transformations" class="section level3">
 <h3>Data Transformations</h3>
-<p>The data transformation function is</p>
+<p>The data transformation function is <code>pltransform</code>. The transformations are provided as a separate function so that if desired, paired or longitudinally transformed data may be included in other (distance-based or non-distance-based) analyses. This function <strong>does not</strong> need to be called prior to utilizing the distance function; all transformations (and input checking) are included within the distance function.</p>
+<p>The output includes a qualitative (binary)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#pltransform(paired.otus, paired.metadata, paired = TRUE, check.input = TRUE)</span></code></pre></div>
 </div>
 <div id="non-phylogenetic-distances" class="section level3">
 <h3>Non-Phylogenetic Distances</h3>

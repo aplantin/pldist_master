@@ -14,9 +14,19 @@ Imports: ape
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 NeedsCompilation: no
-Packaged: 2018-08-24 20:13:19 UTC; anna
-Suggests: knitr, rmarkdown, testthat
+Packaged: 2018-08-27 15:10:57 UTC; amp9
+Suggests: knitr, rmarkdown, testthat, devtools
 VignetteBuilder: knitr
-Built: R 3.4.3; ; 2018-08-24 20:13:28 UTC; unix
+Built: R 3.5.1; ; 2018-08-27 17:02:05 UTC; unix
+RemoteType: github
+RemoteHost: https://api.github.com
+RemoteRepo: pldist
+RemoteUsername: aplantin
+RemoteRef: master
+RemoteSha: 4e9c178e4a26850877d4529ff96655474602ecde
+GithubRepo: pldist
+GithubUsername: aplantin
+GithubRef: master
+GithubSHA1: 4e9c178e4a26850877d4529ff96655474602ecde

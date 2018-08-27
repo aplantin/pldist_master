@@ -115,16 +115,14 @@ PUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata) {
       ind <- which((abs(d1) + abs(d2)) != 0)
       d1 <- d1[ind]
       d2 <- d2[ind]
-      avg1 <- avg1[ind]
-      avg2 <- avg2[ind]
       br.len2 <- br.len[ind]
       
       diff <- abs(d2 - d1)/2 
       
       # Generalized LUniFrac dissimilarity
       for(k in 1:length(gam)){
-        w <- br.len2 * (avg1 + avg2)^gam[k]
-        lunifracs[i, j, k] = lunifracs[j, i, k] = sum(diff * w) / sum(w)
+        w <- br.len * (avg1 + avg2)^gam[k]
+        lunifracs[i, j, k] = lunifracs[j, i, k] = sum(diff * w[ind]) / sum(w)
       }
       
       #	Unweighted LUniFrac Distance
@@ -137,7 +135,7 @@ PUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata) {
       if (length(ind) > 0) {
         diff <- diff[ind]
         br.len2 <- br.len[ind]
-        lunifracs[i, j, (k + 1)] = lunifracs[j, i, (k + 1)] = sum(br.len2*diff) / sum(br.len2)
+        lunifracs[i, j, (k + 1)] = lunifracs[j, i, (k + 1)] = sum(br.len2*diff) / sum(br.len)   ## Changed to br.len => branches with obs OTUs but no change contribute
       } else {
         lunifracs[i, j, (k + 1)] = lunifracs[j, i, (k + 1)] = 0
       }

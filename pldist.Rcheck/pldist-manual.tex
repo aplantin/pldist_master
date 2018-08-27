@@ -1,0 +1,674 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `pldist'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\inputencoding{utf8}
+\item[Title]\AsIs{Paired and Longitudinal Ecological Dissimilarities}
+\item[Version]\AsIs{0.0.0.9000}
+\item[Author]\AsIs{Anna M. Plantinga [aut, cre], Jun Chen [aut]}
+\item[Maintainer]\AsIs{Anna M. Plantinga }\email{amp9@williams.edu}\AsIs{}
+\item[Description]\AsIs{Calculates paired and longitudinal UniFrac, Bray-Curtis, Jaccard, Gower, and
+Kulczynski distances/dissimilarities. These metrics summarize changes in the microbiome
+over time and allow these changes to be compared across treatments, conditions, or
+levels of a covariate. For more information, please see Plantinga et al (2018+).}
+\item[Depends]\AsIs{R (>= 3.4.3)}
+\item[Imports]\AsIs{ape}
+\item[License]\AsIs{GPL-3}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyData]\AsIs{true}
+\item[RoxygenNote]\AsIs{6.1.0}
+\item[NeedsCompilation]\AsIs{no}
+\item[Suggests]\AsIs{knitr, rmarkdown, testthat, devtools}
+\item[VignetteBuilder]\AsIs{knitr}
+\item[RemoteType]\AsIs{github}
+\item[RemoteHost]\AsIs{https://api.github.com}
+\item[RemoteRepo]\AsIs{pldist}
+\item[RemoteUsername]\AsIs{aplantin}
+\item[RemoteRef]\AsIs{master}
+\item[RemoteSha]\AsIs{4e9c178e4a26850877d4529ff96655474602ecde}
+\item[GithubRepo]\AsIs{pldist}
+\item[GithubUsername]\AsIs{aplantin}
+\item[GithubRef]\AsIs{master}
+\item[GithubSHA1]\AsIs{4e9c178e4a26850877d4529ff96655474602ecde}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{bal.long.meta}{Simulated metadata for balanced longitudinal study design.}{bal.long.meta}
+\keyword{datasets}{bal.long.meta}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Corresponding OTU matrix is stored in `bal.long.otus`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(bal.long.meta)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A data frame with 15 rows and 3 columns. 
+\begin{description}
+
+\item[subjID] Subject identifiers
+\item[sampID] Sample identifiers, matches row names of OTU count matrix
+\item[time] Time indicator
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{bal.long.otus}{Simulated OTU data for balanced longitudinal study design.}{bal.long.otus}
+\keyword{datasets}{bal.long.otus}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Corresponding metadata is stored in `bal.long.meta`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(bal.long.otus)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A matrix with 15 rows and 10 columns. Rows are samples, columns are OTUs.
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{braycurtis}{Paired or longitudinal Bray-Curtis distances}{braycurtis}
+%
+\begin{Description}\relax
+The distances are calculated as follows, where d\_k\textasciicircum{}X is the within-subject 
+measure of change appropriate to the setting (paired/longitudinal and 
+quantitative/qualitative), as described in the full package documentation 
+and vignette. 
+\eqn{D_{AB} = (1/m) * \sum_k |d_k^A - d_k^B|}{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+braycurtis(tsf.data, binary)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{tsf.data}] Transformed OTU table and metadata (from function pl.transform)
+
+\item[\code{binary}] Logical indicating whether to use the binary version of the distance
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns an n x n distance matrix.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{counts2props}{counts2props}{counts2props}
+%
+\begin{Description}\relax
+Converts OTU counts to OTU proportions/relative abundances.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+counts2props(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] Matrix of OTU counts (rows are subjects, columns are taxa).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+n x p matrix of OTU proportions.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{flexsign}{flexsign}{flexsign}
+%
+\begin{Description}\relax
+Sign function that considers 0 both positive and negative. Returns 1 if the two numbers are the same sign, 0 otherwise. Vectorized (compares vectors elementwise).
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+flexsign(v1, v2)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{v1}] First vector
+
+\item[\code{v2}] Second vector
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns an n x n distance matrix.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{gower}{Paired or longitudinal Gower distances}{gower}
+%
+\begin{Description}\relax
+The distances are calculated as follows, where d\_k\textasciicircum{}X is the within-subject 
+measure of change appropriate to the setting (paired/longitudinal and 
+quantitative/qualitative), as described in the full package documentation 
+and vignette. 
+
+\eqn{D_{AB} = (1/m) \sum_k (|d_k^A - d_k^B|)/(\max d_k - \min d_k)}{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+gower(tsf.data, binary)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{tsf.data}] Transformed OTU table and metadata (from function pl.transform)
+
+\item[\code{binary}] Logical indicating whether to use the binary version of the distance
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns an n x n distance matrix.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{jaccard}{Paired or longitudinal Jaccard distances}{jaccard}
+%
+\begin{Description}\relax
+The distances are calculated as follows, where d\_k\textasciicircum{}X is the within-subject 
+measure of change appropriate to the setting (paired/longitudinal and 
+quantitative/qualitative), as described in the full package documentation 
+and vignette. 
+Paired, qualitative: \eqn{D_{AB} = 1 - {\sum_k I(d_k^A = d_k^B) I(d_k^A \neq 0)}/{\sum_k [I(d_k^A \neq 0) + I(d_k^B \neq 0)]}}{}
+Paired, quantitative: \eqn{D_{AB} = 1 - {\sum_k \min(|d_k^A|, |d_k^B|) \, I(sgn(d_k^A) = sgn(d_k^B))}/{\sum_k \max(|d_k^A|, |d_k^b|)}}{}
+Longitudinal: \eqn{D_{AB} = 1 - (\sum_k \min(d_k^A, d_k^B))/(\sum_k \max(d_k^A, d_k^B))}{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+jaccard(tsf.data, paired, binary)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{tsf.data}] Transformed OTU table and metadata (from function pl.transform)
+
+\item[\code{paired}] Logical indicating whether paired analysis is desired
+
+\item[\code{binary}] Logical indicating whether to use the binary version of the distance
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns an n x n distance matrix.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{kulczynski}{Paired or longitudinal Kulczynski distances}{kulczynski}
+%
+\begin{Description}\relax
+The distances are calculated as follows, where d\_k\textasciicircum{}X is the within-subject 
+measure of change appropriate to the setting (paired/longitudinal and 
+quantitative/qualitative), as described in the full package documentation 
+and vignette. 
+
+Paired, qualitative: \eqn{D_{AB} = 1 - (1/m) \sum_k I[d_k^A = d_k^B] I[d_k^A \neq 0]}{} 
+Paired, quantitative: \eqn{D_{AB} = 1 - (2/m) \sum_k \min(|d_k^A|, |d_k^B|) I[sgn(d_k^A) = sgn(d_k^B)]}{}
+Longitudinal: \eqn{D_{AB} = 1 - (1/m) * \sum_k \min(d_k^A, d_k^B)}{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+kulczynski(tsf.data, paired, binary)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{tsf.data}] Transformed OTU table and metadata (from function pl.transform)
+
+\item[\code{paired}] Logical indicating whether paired analysis is desired
+
+\item[\code{binary}] Logical indicating whether to use the binary version of the distance
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns an n x n distance matrix.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{LUniFrac}{LUniFrac}{LUniFrac}
+%
+\begin{Description}\relax
+Longitudinal UniFrac distances for comparing changes in
+microbial communities across 2 time points.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+LUniFrac(otu.tab, tree, gam = c(0, 0.5, 1), metadata)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otu.tab}] OTU count table, containing 2*n rows (samples) and q columns (OTUs)
+
+\item[\code{tree}] Rooted phylogenetic tree of R class "phylo"
+
+\item[\code{gam}] Parameter controlling weight on abundant lineages. The same weight is used within a subjects as between subjects.
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values), 
+sample identifiers (must match row names of otu.tab), 
+and time or group indicator (numeric variable, or factor with levels such that as.numeric returns 
+the desired ordering). Column names should be subjID, sampID, time.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Based in part on Jun Chen \& Hongzhe Li (2012), GUniFrac.
+
+Computes difference between time points and then calculates
+difference of these differences, resulting in a dissimilarity
+matrix that can be used in a variety of downstream 
+distance-based analyses.
+\end{Details}
+%
+\begin{Value}
+Returns a (K+1) dimensional array containing the longitudinal UniFrac dissimilarities 
+with the K specified gamma values plus the unweighted distance. The unweighted dissimilarity 
+matrix may be accessed by result[,,"d\_UW"], and the generalized dissimilarities by result[,,"d\_G"] 
+where G is the particular choice of gamma.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{paired.meta}{Simulated metadata for paired study design.}{paired.meta}
+\keyword{datasets}{paired.meta}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Corresponding OTU matrix is stored in `paired.otus`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(paired.meta)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A data frame with 10 rows and 3 columns. 
+\begin{description}
+
+\item[subjID] Subject identifiers
+\item[sampID] Sample identifiers, matches row names of OTU count matrix
+\item[time] Time indicator, takes values 1 or 2
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{paired.otus}{Simulated OTU data for paired study design.}{paired.otus}
+\keyword{datasets}{paired.otus}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Corresponding metadata is stored in `paired.meta`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(paired.otus)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A matrix with 10 rows and 10 columns. Rows are samples, columns are OTUs.
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{pl.transform}{tsf\_paired}{pl.transform}
+%
+\begin{Description}\relax
+OTU transformation for longitudinal data. Computes average within-subject change 
+(in presence for qualitative metrics, abundance for quantitative metrics) 
+during one unit of time for each taxon.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pl.transform(otus, metadata, paired)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otus}] Matrix of OTU counts or proportions. Notes: (1) Will be transformed to 
+proportions if it's not already; (2) Row names must be sample identifiers 
+(matching metadata), and column names must be OTU identifiers (enforced if 
+using UniFrac distances).
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
+sample identifiers (must match row names of otu.tab, column name "sampID"), 
+and time point or group identifier (if using longitudinal distances, this must be numeric or 
+convertable to numeric).
+
+\item[\code{paired}] Logical indicating whether to use the paired version of the metric (TRUE) or the 
+longitudinal version (FALSE). Paired analyis is only possible when there are exactly 2 
+unique time points/identifiers for each subject or pair.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+List with the following elements. Both data matrices have subject identifiers 
+as row names and OTU identifiers as column names.  
+\begin{ldescription}
+\item[\code{tsf.data}] List with 3 elements: 
+(1) dat.binary: n x p matrix of data after longitudinal, binary/qualitative transformation 
+(2) dat.quant: n x p matrix of data after longitudinal, quantitative transformation
+(3) avg.prop: n x p matrix with overall average proportion of each taxon 
+\item[\code{type}] Type of transformation that was used (paired, balanced longitudinal, 
+unbalanced longitudinal) with a warning if unbalanced longitudinal.
+\end{ldescription}
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{pldist}{pldist}{pldist}
+%
+\begin{Description}\relax
+Function that calculates paired and longitudinal ecological distance/dissimilarity 
+matrices. Includes qualitative and quantitative versions of Bray-Curtis, Jaccard, Kulczynski, 
+Gower, and unweighted and generalized UniFrac distances/dissimilarities. UniFrac-based 
+metrics are based in part on GUniFrac (Jun Chen \& Hongzhe Li (2012)).
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pldist(otus, metadata, paired = FALSE, binary = FALSE, method,
+  tree = NULL, gam = c(0, 0.5, 1))
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otus}] OTU count or frequency table, containing one row per sample and one column per OTU.
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
+sample identifiers (must match row names of otu.tab, column name "sampID"), 
+and time point or group identifier (if using longitudinal distances, this must be numeric or 
+convertable to numeric).
+
+\item[\code{paired}] Logical indicating whether to use the paired version of the metric (TRUE) or the 
+longitudinal version (FALSE). Paired analyis is only possible when there are exactly 2 
+unique time points/identifiers for each subject or pair.
+
+\item[\code{binary}] Logical indicating whether to use the qualitative (TRUE) or quantitative (FALSE) 
+version of each metric. Qualitative analysis only incorporates changes in OTU presence or 
+absence; quantitative analysis incorporates changes in abundance.
+
+\item[\code{method}] Desired distance metric. Choices are braycurtis, jaccard, kulczynski, gower, and 
+unifrac, or any unambiguous abbreviation thereof.
+
+\item[\code{tree}] Rooted phylogenetic tree of R class "phylo". Default NULL; only needed for 
+UniFrac family distances.
+
+\item[\code{gam}] Parameter controlling weight on abundant lineages for UniFrac family distances. The 
+same weight is used within a subject as between subjects. Default (0, 0.5, 1).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns a list with elements: 
+\begin{ldescription}
+\item[\code{D}] If any metric other than UniFrac is used, D is an n x n distance (or dissimilarity) matrix. 
+For UniFrac-family dissimilarities, D is a (K+1) dimensional array containing the paired or 
+longitudinal UniFrac dissimilarities with the K specified gamma values plus the unweighted 
+distance. The unweighted distance matrix may be accessed by result[,,"d\_UW"], and the 
+generalized dissimilarities by result[,,"d\_G"] where G is the particular choice of gamma.
+\item[\code{type}] String indicating what type of dissimilarity was requested.
+\end{ldescription}
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{pltransform}{tsf\_paired}{pltransform}
+%
+\begin{Description}\relax
+OTU transformation for longitudinal data. Computes average within-subject change 
+(in presence for qualitative metrics, abundance for quantitative metrics) 
+during one unit of time for each taxon.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pltransform(otus, metadata, paired, check.input = TRUE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otus}] Matrix of OTU counts or proportions. Notes: (1) Will be transformed to 
+proportions if it's not already; (2) Row names must be sample identifiers 
+(matching metadata), and column names must be OTU identifiers (enforced if 
+using UniFrac distances).
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
+sample identifiers (must match row names of otu.tab, column name "sampID"), 
+and time point or group identifier (if using longitudinal distances, this must be numeric or 
+convertable to numeric).
+
+\item[\code{paired}] Logical indicating whether to use the paired version of the metric (TRUE) or the 
+longitudinal version (FALSE). Paired analyis is only possible when there are exactly 2 
+unique time points/identifiers for each subject or pair.
+
+\item[\code{check.input}] Logical indicating whether to check input values (default TRUE).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+List with the following elements. Both data matrices have subject identifiers 
+as row names and OTU identifiers as column names.  
+\begin{ldescription}
+\item[\code{tsf.data}] List with 3 elements: 
+(1) dat.binary: n x p matrix of data after longitudinal, binary/qualitative transformation 
+(2) dat.quant: n x p matrix of data after longitudinal, quantitative transformation
+(3) avg.prop: n x p matrix with overall average proportion of each taxon 
+\item[\code{type}] Type of transformation that was used (paired, balanced longitudinal, 
+unbalanced longitudinal) with a warning if unbalanced longitudinal.
+\end{ldescription}
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{PUniFrac}{PUniFrac}{PUniFrac}
+%
+\begin{Description}\relax
+Paired UniFrac distances for comparing changes in
+microbial communities across 2 groups or time points.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+PUniFrac(otu.tab, tree, gam = c(0, 0.5, 1), metadata)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otu.tab}] OTU count table, containing 2*n rows (samples) and q columns (OTUs)
+
+\item[\code{tree}] Rooted phylogenetic tree of R class "phylo"
+
+\item[\code{gam}] Parameter controlling weight on abundant lineages. The same weight is used within a subject as between subjects.
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
+sample identifiers (must match row names of otu.tab, column name "sampID"), 
+and time point or group identifier (variable with two unique levels, column name "time").
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Based in part on Jun Chen \& Hongzhe Li (2012), GUniFrac.
+
+Computes difference between time points and then calculates
+difference of these differences, resulting in a dissimilarity
+matrix that can be used in a variety of downstream 
+distance-based analyses.
+\end{Details}
+%
+\begin{Value}
+Returns a (K+1) dimensional array containing the longitudinal UniFrac dissimilarities 
+with the K specified gamma values plus the unweighted distance. The unweighted dissimilarity 
+matrix may be accessed by result[,,"d\_UW"], and the generalized dissimilarities by result[,,"d\_G"] 
+where G is the particular choice of gamma.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{sim.tree}{Simulated rooted phylogenetic tree.}{sim.tree}
+\keyword{datasets}{sim.tree}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Tree includes 10 OTUs and may be used with any of the 
+simulated data sets (paired, balanced longitudinal, or 
+unbalanced longitudinal).
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(sim.tree)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class "phylo".
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{tsf\_long}{tsf\_paired}{tsf.Rul.long}
+%
+\begin{Description}\relax
+OTU transformation for longitudinal data. Computes average within-subject change 
+(in presence for qualitative metrics, abundance for quantitative metrics) 
+during one unit of time for each taxon.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+tsf_long(otus, metadata)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otus}] Matrix of OTU counts or proportions. Notes: (1) Will be transformed to 
+proportions if it's not already; (2) Row names must be sample identifiers 
+(matching metadata), and column names must be OTU identifiers (enforced if 
+using UniFrac distances).
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
+sample identifiers (must match row names of otu.tab, column name "sampID"), 
+and time point or group identifier (if using longitudinal distances, this must be numeric or 
+convertable to numeric).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+List with the following elements. Both data matrices have subject identifiers 
+as row names and OTU identifiers as column names.  
+\begin{ldescription}
+\item[\code{dat.binary}] n x p matrix of data after longitudinal, binary/qualitative transformation
+\item[\code{dat.quant}] n x p matrix of data after longitudinal, quantitative transformation
+\item[\code{avg.prop}] n x p matrix with overall average proportion of each taxon
+\end{ldescription}
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{tsf\_paired}{tsf\_paired}{tsf.Rul.paired}
+%
+\begin{Description}\relax
+OTU transformation for paired data. Computes within-subject change (in presence 
+for qualitative metrics and abundance for quantitative metrics) between time 
+points for each taxon.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+tsf_paired(otus, metadata)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{otus}] Matrix of OTU counts or proportions. Notes: (1) Will be transformed to 
+proportions if it's not already; (2) Row names must be sample identifiers 
+(matching metadata), and column names must be OTU identifiers (enforced if 
+using UniFrac distances).
+
+\item[\code{metadata}] Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
+sample identifiers (must match row names of otu.tab, column name "sampID"), 
+and time point or group identifier (must have two unique values for paired transformation).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+List with the following elements. Both data matrices have subject identifiers 
+as row names and OTU identifiers as column names.  
+\begin{ldescription}
+\item[\code{dat.binary}] n x p matrix of data after paired, binary/qualitative transformation
+\item[\code{dat.quant}] n x p matrix of data after paired, quantitative transformation
+\item[\code{avg.prop}] n x p matrix with overall average proportion of each taxon
+\end{ldescription}
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{unbal.long.meta}{Simulated metadata for balanced longitudinal study design.}{unbal.long.meta}
+\keyword{datasets}{unbal.long.meta}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Corresponding OTU matrix is stored in `unbal.long.otus`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(unbal.long.meta)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A data frame with 14 rows and 3 columns. 
+\begin{description}
+
+\item[subjID] Subject identifiers
+\item[sampID] Sample identifiers, matches row names of OTU count matrix
+\item[time] Time indicator
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{unbal.long.otus}{Simulated OTU data for unbalanced longitudinal study design.}{unbal.long.otus}
+\keyword{datasets}{unbal.long.otus}
+%
+\begin{Description}\relax
+Simulation code is included in the package vignette. 
+Corresponding metadata is stored in `unbal.long.meta`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+data(unbal.long.otus)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A matrix with 14 rows and 10 columns. Rows are samples, columns are OTUs.
+\end{Format}
+\printindex{}
+\end{document}
