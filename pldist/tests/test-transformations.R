@@ -1,7 +1,22 @@
 context("transformations")
 
-test_that("transformation stops when it should", {
+test_that("transformations give expected result", {
+  ## Paired, binary 
   
-  expect_error( runningmean(0, c(0,0)) )
+  ## Paired, quantitative 
+  
+  
+  
+  ## Balanced longitudinal, binary 
+  
+  ## Balanced longitudinal, quantitative 
+  
+  
+  
+  ## Unbalanced longitudinal, binary 
+  
+  ## Unbalanced longitudinal, quantitative
+  
+  
   
 })
