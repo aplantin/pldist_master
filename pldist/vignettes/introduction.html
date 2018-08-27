@@ -116,7 +116,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <span class="co">#&gt; Installing pldist</span>
 <span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
 <span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
-<span class="co">#&gt;   '/private/var/folders/yw/fmxy3ljs5yxf1frzv8b2fbhh0000gn/T/RtmpnvjbZK/devtools8f2180c569d/aplantin-pldist-0a9263e'  \</span>
+<span class="co">#&gt;   '/private/var/folders/yw/fmxy3ljs5yxf1frzv8b2fbhh0000gn/T/RtmpOXOWNz/devtools91d67f311bd3/aplantin-pldist-0a9263e'  \</span>
 <span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'  \</span>
 <span class="co">#&gt;   --install-tests</span>
 <span class="co">#&gt; </span></code></pre></div>
@@ -129,14 +129,12 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <p>The primary function in this package calculates distance (or dissimilarity) matrices for all subjects in a dataset. Users can specify paired versus longitudinal, qualitative versus quantitative analysis, and the desired distance metric via function arguments.</p>
 <p>We demonstrate function behavior using simulated data. The code to generate this data is included in the Appendix.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;sim.tree&quot;</span>)
-<span class="kw">data</span>(<span class="st">&quot;paired.otus&quot;</span>)
-<span class="kw">data</span>(<span class="st">&quot;paired.meta&quot;</span>)
-<span class="kw">data</span>(<span class="st">&quot;bal.long.otus&quot;</span>)
-<span class="kw">data</span>(<span class="st">&quot;bal.long.meta&quot;</span>)
-<span class="kw">data</span>(<span class="st">&quot;unbal.long.otus&quot;</span>)
-<span class="kw">data</span>(<span class="st">&quot;unbal.long.meta&quot;</span>)</code></pre></div>
+<span class="kw">data</span>(<span class="st">&quot;paired.otus&quot;</span>); <span class="kw">data</span>(<span class="st">&quot;paired.meta&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;bal.long.otus&quot;</span>); <span class="kw">data</span>(<span class="st">&quot;bal.long.meta&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;unbal.long.otus&quot;</span>); <span class="kw">data</span>(<span class="st">&quot;unbal.long.meta&quot;</span>)</code></pre></div>
 <div id="data-transformations" class="section level3">
 <h3>Data Transformations</h3>
+<p>The data transformation function is</p>
 </div>
 <div id="non-phylogenetic-distances" class="section level3">
 <h3>Non-Phylogenetic Distances</h3>
