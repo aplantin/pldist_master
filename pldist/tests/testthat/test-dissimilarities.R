@@ -70,15 +70,17 @@ test_that("dissimilarities give expected results", {
   otu1.12 <- sim.tree$edge.length[2] 
   otu2.12 <- sim.tree$edge.length[3] 
   otu12.123 <- sim.tree$edge.length[1]
-  otu3.123 <- sim.tree$edge.length[4]
+  otu3.123 <- sim.tree$edge.length[4] 
   uf.pb <- (otu1.12*0.5 + otu3.123*0.5) / sum(sim.tree$edge.length)
-  uf.pq <- otu1.12*(4/3) + otu2.12*(1/3 - 0.2) + otu3.123*(1-1/7) + otu12.123*(2/9) 
-  uf.lb <- sum(abs(longit.dat$tsf.data$dat.binary[1,] - longit.dat$tsf.data$dat.binary[2,]))/3
-  uf.lq <- sum(abs(longit.dat$tsf.data$dat.quant[1,] - longit.dat$tsf.data$dat.quant[2,]))/3
+  uf.pq <- (otu1.12*0.35*2/3 + otu2.12*0.85*(1/6-0.1) + otu3.123*0.8*3/7 + otu12.123*1.2*1/9) / 
+    sum(sim.tree$edge.length * c(1.2, 0.35, 0.85, 0.8))
+  uf.lb <- (otu1.12 + otu3.123)/sum(sim.tree$edge.length)
+  uf.lq <- (otu1.12*0.35*2/3 + otu2.12*0.85*(1/3-0.2) + otu3.123*0.8*6/7 + otu12.123*1.2*2/9) / 
+    sum(sim.tree$edge.length * c(1.2, 0.35, 0.85, 0.8))
   
   expect_equal(pldist(otus, metadata, paired = TRUE, binary = TRUE, method = "unifrac", tree = sim.tree)$D[1,2,"d_UW"], uf.pb)
   expect_equal(pldist(otus, metadata, paired = TRUE, binary = FALSE, method = "unifrac", tree = sim.tree)$D[1,2,"d_1"], uf.pq)
-  expect_equal(pldist(otus, metadata, paired = FALSE, binary = TRUE, method = "unifrac")$D[1,2,"d_UW"], uf.lb)
-  expect_equal(pldist(otus, metadata, paired = FALSE, binary = FALSE, method = "unifrac")$D[1,2,"d_1"], uf.lq)
+  expect_equal(pldist(otus, metadata, paired = FALSE, binary = TRUE, method = "unifrac", tree = sim.tree)$D[1,2,"d_UW"], uf.lb)
+  expect_equal(pldist(otus, metadata, paired = FALSE, binary = FALSE, method = "unifrac", tree = sim.tree)$D[1,2,"d_1"], uf.lq)
   
 })

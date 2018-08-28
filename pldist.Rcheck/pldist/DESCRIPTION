@@ -19,7 +19,7 @@ NeedsCompilation: no
 Packaged: 2018-08-27 15:10:57 UTC; amp9
 Suggests: knitr, rmarkdown, testthat, devtools
 VignetteBuilder: knitr
-Built: R 3.5.1; ; 2018-08-27 17:02:05 UTC; unix
+Built: R 3.5.1; ; 2018-08-28 01:46:51 UTC; unix
 RemoteType: github
 RemoteHost: https://api.github.com
 RemoteRepo: pldist

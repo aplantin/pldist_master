@@ -1,4 +1,4 @@
-* using log directory ‘/Users/amp9/Documents/Research/pldist/pldist.Rcheck’
+* using log directory ‘/Users/anna/Documents/Research/Methods_indiv/2018_LUniFrac/Code/pldist/pldist.Rcheck’
 * using R version 3.5.1 (2018-07-02)
 * using platform: x86_64-apple-darwin15.6.0 (64-bit)
 * using session charset: UTF-8
@@ -49,33 +49,12 @@
 * checking files in ‘vignettes’ ... OK
 * checking examples ... NONE
 * checking for unstated dependencies in ‘tests’ ... OK
-* checking tests ... ERROR
+* checking tests ... OK
   Running ‘testthat.R’
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-         on.exit(options(expressions = expressions_opt), add = TRUE)
-         e$expectation_calls <- frame_calls(11, 2)
-         test_error <<- e
-         register_expectation(e)
-         e$handled <- TRUE
-         test_error <<- e
-     }, "subscript out of bounds", quote(`[<-`(`*tmp*`, 5, , value = c(0.2, 0, 0.8)))) at testthat/test-dissimilarities.R:15
-  2: eval(code, test_env)
-  
-  ══ testthat results  ═══════════════════════════════════════════════════════════
-  OK: 38 SKIPPED: 0 FAILED: 1
-  1. Error: dissimilarities give expected results (@test-dissimilarities.R#15) 
-  
-  Error: testthat unit tests failed
-  Execution halted
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking running R code from vignettes ... NONE
 * checking re-building of vignette outputs ... OK
-* checking PDF version of manual ... WARNING
-LaTeX errors when creating PDF version.
-This typically indicates Rd problems.
-* checking PDF version of manual without hyperrefs or index ... ERROR
-Re-running with no redirection of stdout/stderr.
+* checking PDF version of manual ... OK
 * DONE
-Status: 2 ERRORs, 1 WARNING
+Status: OK

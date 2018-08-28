@@ -1,14 +1,14 @@
-#setwd("~/Documents/Research/Methods_indiv/2018_LUniFrac/Code/pldist/pldist/R/")
-setwd("~/Documents/Research/pldist/pldist/R/")
+setwd("~/Documents/Research/Methods_indiv/2018_LUniFrac/Code/pldist/pldist/R/")
+#setwd("~/Documents/Research/pldist/pldist/R/")
 source("./pltransform.R")
 source("./pl_braycurtis.R")
 source("./pl_jaccard.R")
 source("./pl_kulczynski.R")
 source("./pl_gower.R")
-source("./paired_unifrac.R")
+#source("./paired_unifrac.R")
 source("./longit_unifrac.R")
 source("./pldist.R")
-library(ape)
+source("./check_input.R")
 
 
 #### Tests for paired data 
@@ -70,7 +70,7 @@ do.many.paired <- function(bigB, nsubj, notus, nzero, maxct) {
   return(out)
 }
 
-simres <- do.many.paired(10, nsubj = 10, notus = 20, nzero = 100, maxct = 2500)  
+simres <- do.many.paired(100, nsubj = 10, notus = 20, nzero = 100, maxct = 2500)  
 lapply(simres, range)
 
 

@@ -1,30 +1,32 @@
-#' PUniFrac
+#' LUniFrac 
 #'
-#' Paired UniFrac distances for comparing changes in
-#' microbial communities across 2 groups or time points.
+#' Longitudinal UniFrac distances for comparing changes in
+#' microbial communities across 2 time points.
 #'
 #' Based in part on Jun Chen & Hongzhe Li (2012), GUniFrac.
 #'
 #' Computes difference between time points and then calculates
 #' difference of these differences, resulting in a dissimilarity
 #' matrix that can be used in a variety of downstream 
-#' distance-based analyses. 
+#' distance-based analyses.
 #'
 #' @param otu.tab OTU count table, containing 2*n rows (samples) and q columns (OTUs)
 #' @param tree Rooted phylogenetic tree of R class "phylo"
-#' @param gam Parameter controlling weight on abundant lineages. The same weight is used within a subject as between subjects.
-#' @param metadata Data frame with three columns: subject identifiers (n unique values, column name "subjID"), 
-#'     sample identifiers (must match row names of otu.tab, column name "sampID"), 
-#'     and time point or group identifier (variable with two unique levels, column name "time").
+#' @param gam Parameter controlling weight on abundant lineages. The same weight is used within a subjects as between subjects.
+#' @param metadata Data frame with three columns: subject identifiers (n unique values), 
+#'     sample identifiers (must match row names of otu.tab), 
+#'     and time or group indicator (numeric variable, or factor with levels such that as.numeric returns 
+#'     the desired ordering). Column names should be subjID, sampID, time. 
+#' @param paired Logical indicating whether to use the paired (TRUE) or longitudinal (FALSE) transformation. 
 #' @return Returns a (K+1) dimensional array containing the longitudinal UniFrac dissimilarities 
-#'     with the K specified gamma values plus the unweighted distance. The unweighted dissimilarity 
-#'     matrix may be accessed by result[,,"d_UW"], and the generalized dissimilarities by result[,,"d_G"] 
-#'     where G is the particular choice of gamma.
-#' @importFrom ape is.rooted drop.tip rtree
+#'    with the K specified gamma values plus the unweighted distance. The unweighted dissimilarity 
+#'    matrix may be accessed by result[,,"d_UW"], and the generalized dissimilarities by result[,,"d_G"] 
+#'    where G is the particular choice of gamma.
+#' 
 #' 
 #' @export
-#'
-PUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata) {
+#' 
+LUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata, paired) {
   n <- nrow(otu.tab)
   
   # Check OTU name consistency
@@ -51,7 +53,8 @@ PUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata) {
   br.len <- tree$edge.length    # branch lengths, corresponds to edge2
   
   #  Accumulate OTU proportions up the tree
-  cum <- matrix(0, nbr, n)							# Branch abundance matrix
+  ## Note: columns are samples, rows are branches 
+  cum <- matrix(0, nbr, n)							# Branch abundance matrix (n = nsamp = nsubj * ntimes in this usage) 
   for (i in 1:ntip) {
     tip.loc <- which(edge2 == i)
     cum[tip.loc, ] <- cum[tip.loc, ] + otu.tab[, i]
@@ -63,61 +66,42 @@ PUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata) {
       node.loc <- which(edge2 == node)
     }
   }
+  colnames(cum) = rownames(otu.tab)
   
   ### Step 1: calculate within-subject distance data
-  metadata[,3] <- as.numeric(as.factor(metadata[,3]))
-  cum.t1 <- cum[, which(metadata[,3] == 1)]
-  colnames(cum.t1) <- metadata[,1][which(metadata[,3] == 1)]
-  
-  cum.t2 <- cum[, which(metadata[,3] == 2)]
-  colnames(cum.t2) <- metadata[,1][which(metadata[,3] == 2)]
-  cum.t2 <- cum.t2[, colnames(cum.t1)]
-  
-  if (any(colnames(cum.t1) != colnames(cum.t2))) {
-    stop("Same set of samples is not present at both time points!")
+  if (paired) {
+    tsf.dat <- pltransform(otus = t(cum), metadata = metadata, paired = TRUE, check.input = FALSE)$tsf.data 
+  } else {
+    tsf.dat <- pltransform(otus = t(cum), metadata = metadata, paired = FALSE, check.input = FALSE)$tsf.data 
   }
-  
-  cum.avg <- Reduce("+", list(cum.t1, cum.t2))/2
+  cum.avg <- t(tsf.dat$avg.prop)
+  cum.unw <- t(tsf.dat$dat.binary)
+  cum.gen <- t(tsf.dat$dat.quant) 
   
   # Construct the returning array
   # d_UW: unweighted
   dimname3 <- c(paste("d", gam, sep="_"), "d_UW")
-  lunifracs <- array(NA, c(ncol(cum.t1), ncol(cum.t1), length(gam) + 1),
-                     dimnames=list(colnames(cum.t1), colnames(cum.t1), dimname3))
+  lunifracs <- array(NA, c(ncol(cum.avg), ncol(cum.avg), length(gam) + 1),
+                     dimnames=list(colnames(cum.avg), colnames(cum.avg), dimname3))
   for (i in 1:(length(gam)+1)){
-    for (j in 1:ncol(cum.t2)){
+    for (j in 1:ncol(cum.avg)){
       lunifracs[j, j, i] <- 0
     }
   }
   
-  # Calculate within-subject distances (for generalized/weighted)
-  cum.diff <- matrix(0, nrow = nrow(cum), ncol = ncol(cum.t2))
-  for (i in 1:ntip) {
-    cum.diff[i,] <- (cum.t2[i,] - cum.t1[i,]) / (cum.t2[i,] + cum.t1[i,])
-  }
-  cum.diff[is.na(cum.diff)] <- 0
-  
-  # Calculate within-subject distances (for unweighted)
-  cum.diff.uw <- matrix(0, nrow = nrow(cum), ncol = ncol(cum.t2))
-  for (i in 1:ntip) {
-    ## this is the change in V2
-    cum.diff.uw[i,] <- as.numeric(cum.t2[i,] > 0) - as.numeric(cum.t1[i,] > 0)
-  }
-  
   ### Step 2: calculate distances based on within-subject summaries
-  for (i in 2:ncol(cum.diff)) {
+  for (i in 2:ncol(cum.avg)) {
     for (j in 1:(i-1)) {
-      d1 <- cum.diff[, i]
-      d2 <- cum.diff[, j]
+      d1 <- cum.gen[, i]
+      d2 <- cum.gen[, j]
       avg1 <- cum.avg[, i]
       avg2 <- cum.avg[, j]
       
       ind <- which((abs(d1) + abs(d2)) != 0)
       d1 <- d1[ind]
       d2 <- d2[ind]
+      diff <- abs(d2 - d1)
       br.len2 <- br.len[ind]
-      
-      diff <- abs(d2 - d1)/2 
       
       # Generalized LUniFrac dissimilarity
       for(k in 1:length(gam)){
@@ -126,16 +110,16 @@ PUniFrac <- function(otu.tab, tree, gam = c(0, 0.5, 1), metadata) {
       }
       
       #	Unweighted LUniFrac Distance
-      d1 <- cum.diff.uw[, i]
-      d2 <- cum.diff.uw[, j]
-      diff <- abs(d2 - d1)/2
+      d1 <- cum.unw[, i]
+      d2 <- cum.unw[, j]
+      diff <- abs(d2 - d1) 
       
       # only branches with some change contribute
-      ind <- which((abs(cum.diff.uw[, i]) + abs(cum.diff.uw[,j])) != 0)
+      ind <- which((abs(cum.unw[, i]) + abs(cum.unw[,j])) != 0)
       if (length(ind) > 0) {
         diff <- diff[ind]
         br.len2 <- br.len[ind]
-        lunifracs[i, j, (k + 1)] = lunifracs[j, i, (k + 1)] = sum(br.len2*diff) / sum(br.len)   ## Changed to br.len => branches with obs OTUs but no change contribute
+        lunifracs[i, j, (k + 1)] = lunifracs[j, i, (k + 1)] = sum(br.len2*diff) / sum(br.len)
       } else {
         lunifracs[i, j, (k + 1)] = lunifracs[j, i, (k + 1)] = 0
       }

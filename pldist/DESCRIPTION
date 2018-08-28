@@ -9,7 +9,7 @@ Description: Calculates paired and longitudinal UniFrac, Bray-Curtis, Jaccard, G
     Kulczynski distances/dissimilarities. These metrics summarize changes in the microbiome 
     over time and allow these changes to be compared across treatments, conditions, or 
     levels of a covariate. For more information, please see Plantinga et al (2018+).  
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.4.0)
 Imports: ape
 License: GPL-3
 Encoding: UTF-8
