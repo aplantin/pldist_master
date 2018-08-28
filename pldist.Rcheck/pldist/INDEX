@@ -1,10 +1,10 @@
 LUniFrac                LUniFrac
-PUniFrac                PUniFrac
 bal.long.meta           Simulated metadata for balanced longitudinal
                         study design.
 bal.long.otus           Simulated OTU data for balanced longitudinal
                         study design.
 braycurtis              Paired or longitudinal Bray-Curtis distances
+check_input             check_input
 counts2props            counts2props
 flexsign                flexsign
 gower                   Paired or longitudinal Gower distances
@@ -12,7 +12,6 @@ jaccard                 Paired or longitudinal Jaccard distances
 kulczynski              Paired or longitudinal Kulczynski distances
 paired.meta             Simulated metadata for paired study design.
 paired.otus             Simulated OTU data for paired study design.
-pl.transform            tsf_paired
 pldist                  pldist
 pltransform             tsf_paired
 sim.tree                Simulated rooted phylogenetic tree.

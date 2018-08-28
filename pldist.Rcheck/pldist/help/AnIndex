@@ -1,6 +1,7 @@
 bal.long.meta	bal.long.meta
 bal.long.otus	bal.long.otus
 braycurtis	braycurtis
+check_input	check_input
 counts2props	counts2props
 flexsign	flexsign
 gower	gower
@@ -9,10 +10,8 @@ kulczynski	kulczynski
 LUniFrac	LUniFrac
 paired.meta	paired.meta
 paired.otus	paired.otus
-pl.transform	pl.transform
 pldist	pldist
 pltransform	pltransform
-PUniFrac	PUniFrac
 sim.tree	sim.tree
 tsf_long	tsf_long
 tsf_paired	tsf_paired
