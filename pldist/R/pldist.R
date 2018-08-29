@@ -54,16 +54,16 @@ pldist <- function(otus, metadata, paired = FALSE, binary = FALSE, method, tree 
     ## Calculate transformed data and apply distance (all except UniFrac) 
     tsf.res <- pltransform(otus = otus, metadata = metadata, paired = paired, check.input = FALSE)
     D <- switch(method, 
-                braycurtis = braycurtis(tsf.res$tsf.data, binary = binary), 
-                jaccard = jaccard(tsf.res$tsf.data, paired = paired, binary = binary), 
-                kulczynski = kulczynski(tsf.res$tsf.data, paired = paired, binary = binary), 
-                gower = gower(tsf.res$tsf.data, binary = binary)
+                braycurtis = braycurtis(tsf.res, binary = binary), 
+                jaccard = jaccard(tsf.res, paired = paired, binary = binary), 
+                kulczynski = kulczynski(tsf.res, paired = paired, binary = binary), 
+                gower = gower(tsf.res, binary = binary)
                 ) 
   } else {
     ## Calculate paired/longitudinal UniFrac dissimilarities 
     if (is.null(tree)) stop("Tree is required for UniFrac family metrics.")
     if (!is.rooted(tree)) stop("Rooted phylogenetic tree required!") 
-    D <- LUniFrac(otu.tab = otus, tree = tree, gam = gam, metadata = metadata, paired = paired)
+    D <- LUniFrac(otu.tab = otus, metadata = metadata, tree = tree, gam = gam, paired = paired, check.input = FALSE)
   } 
   
   if (paired) {

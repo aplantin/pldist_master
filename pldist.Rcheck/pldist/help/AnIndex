@@ -10,8 +10,10 @@ kulczynski	kulczynski
 LUniFrac	LUniFrac
 paired.meta	paired.meta
 paired.otus	paired.otus
+pl.transform	pl.transform
 pldist	pldist
 pltransform	pltransform
+PUniFrac	PUniFrac
 sim.tree	sim.tree
 tsf_long	tsf_long
 tsf_paired	tsf_paired
