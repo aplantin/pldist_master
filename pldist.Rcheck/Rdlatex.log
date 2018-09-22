@@ -102,21 +102,19 @@ n/10 )$
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [6]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (12.36656pt too wide) in paragraph at lines 367--369
+Overfull \hbox (12.36656pt too wide) in paragraph at lines 385--387
 []\T1/ptm/m/n/10 Simulation code is in-cluded in the pack-age vi-gnette. Cor-re
 -spond-ing meta-data is stored in `paired.meta`. 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [7]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [8]
-Overfull \hbox (2.95718pt too wide) in paragraph at lines 455--458
+[7] (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (2.95718pt too wide) in paragraph at lines 428--431
 []\T1/ptm/m/n/10 Logical in-di-cat-ing whether to use the qual-i-ta-tive (TRUE)
  or quan-ti-ta-tive (FALSE)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [9]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [10]
+[8] (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [9]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [10]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [11]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [12]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 No file Rd2.ind.
 [13] (./Rd2.aux)
 
@@ -138,12 +136,12 @@ ype1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (13 pages, 138611 bytes).
+Output written on Rd2.pdf (13 pages, 139000 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2015] (kpathsea + Thai support).
-Scanning input file Rd2.idx....done (28 entries accepted, 0 rejected).
-Sorting entries....done (136 comparisons).
-Generating output file Rd2.ind....done (66 lines written, 0 warnings).
+Scanning input file Rd2.idx....done (26 entries accepted, 0 rejected).
+Sorting entries....done (125 comparisons).
+Generating output file Rd2.ind....done (64 lines written, 0 warnings).
 Output written in Rd2.ind.
 Transcript written in Rd2.ilg.
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex)
@@ -248,22 +246,20 @@ n/10 )$
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [6]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [7]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (12.36656pt too wide) in paragraph at lines 367--369
+Overfull \hbox (12.36656pt too wide) in paragraph at lines 385--387
 []\T1/ptm/m/n/10 Simulation code is in-cluded in the pack-age vi-gnette. Cor-re
 -spond-ing meta-data is stored in `paired.meta`. 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [8]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (2.95718pt too wide) in paragraph at lines 455--458
+Overfull \hbox (2.95718pt too wide) in paragraph at lines 428--431
 []\T1/ptm/m/n/10 Logical in-di-cat-ing whether to use the qual-i-ta-tive (TRUE)
  or quan-ti-ta-tive (FALSE)
-[9] (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [10]
+[9] (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [10]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [11]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [12]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [13] (./Rd2.ind
-[14] [15]) (./Rd2.aux)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [12]
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) (./Rd2.ind
+[13] [14]) (./Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -283,12 +279,12 @@ ype1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (15 pages, 143685 bytes).
+Output written on Rd2.pdf (14 pages, 142195 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2015] (kpathsea + Thai support).
-Scanning input file Rd2.idx....done (28 entries accepted, 0 rejected).
-Sorting entries....done (136 comparisons).
-Generating output file Rd2.ind....done (66 lines written, 0 warnings).
+Scanning input file Rd2.idx....done (26 entries accepted, 0 rejected).
+Sorting entries....done (125 comparisons).
+Generating output file Rd2.ind....done (64 lines written, 0 warnings).
 Output written in Rd2.ind.
 Transcript written in Rd2.ilg.
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex)
@@ -393,22 +389,20 @@ n/10 )$
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [6]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [7]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (12.36656pt too wide) in paragraph at lines 367--369
+Overfull \hbox (12.36656pt too wide) in paragraph at lines 385--387
 []\T1/ptm/m/n/10 Simulation code is in-cluded in the pack-age vi-gnette. Cor-re
 -spond-ing meta-data is stored in `paired.meta`. 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [8]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (2.95718pt too wide) in paragraph at lines 455--458
+Overfull \hbox (2.95718pt too wide) in paragraph at lines 428--431
 []\T1/ptm/m/n/10 Logical in-di-cat-ing whether to use the qual-i-ta-tive (TRUE)
  or quan-ti-ta-tive (FALSE)
-[9] (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [10]
+[9] (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [10]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [11]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [12]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [13] (./Rd2.ind
-[14] [15]) (./Rd2.aux) )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [12]
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) (./Rd2.ind
+[13] [14]) (./Rd2.aux) )
 (see the transcript file for additional information){/usr/local/texlive/2015/te
 xmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/
 enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/2015/texmf-dist/fonts/typ
@@ -422,8 +416,8 @@ ype1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (15 pages, 143916 bytes).
+Output written on Rd2.pdf (14 pages, 142917 bytes).
 Transcript written on Rd2.log.
 Saving output to ‘pldist-manual.pdf’ ...
 Done
-You may want to clean up by 'rm -Rf /var/folders/yw/fmxy3ljs5yxf1frzv8b2fbhh0000gn/T//RtmpfS7CAk/Rd2pdf10cfd58d77f58'
+You may want to clean up by 'rm -Rf /var/folders/yw/fmxy3ljs5yxf1frzv8b2fbhh0000gn/T//RtmpWbtjFI/Rd2pdf1663367f78a2'

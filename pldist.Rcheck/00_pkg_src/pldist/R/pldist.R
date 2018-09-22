@@ -30,6 +30,29 @@
 #'     generalized dissimilarities by result[,,"d_G"] where G is the particular choice of gamma.} 
 #'     \item{type}{String indicating what type of dissimilarity was requested.}
 #'     
+#' @examples 
+#' # Gower distance, paired & quantitative transformation 
+#' pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "gower")$D
+#' 
+#' # Gower distance, paired & qualitative/binary transformation 
+#' pldist(paired.otus, paired.meta, paired = TRUE, binary = TRUE, method = "gower")$D
+#' 
+#' # Gower distance, longitudinal & quantitative transformation 
+#' pldist(bal.long.otus, bal.long.meta, paired = FALSE, binary = FALSE, method = "gower")$D
+#' 
+#' # Gower distance, longitudinal & qualitative/binary transformation 
+#' pldist(bal.long.otus, bal.long.meta, paired = FALSE, binary = TRUE, method = "gower")$D
+#' 
+#' # Other distances 
+#' pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "bray")$D
+#' pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "kulczynski")$D
+#' pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "jaccard")$D
+#' 
+#' # UniFrac additionally requires a phylogenetic tree and gamma values 
+#' # (Gamma controls weight placed on abundant lineages) 
+#' pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, 
+#'     method = "unifrac", tree = sim.tree, gam = c(0, 0.5, 1))$D 
+#'     
 #' @importFrom ape rtree is.rooted drop.tip
 #'     
 #' @export
@@ -54,16 +77,16 @@ pldist <- function(otus, metadata, paired = FALSE, binary = FALSE, method, tree 
     ## Calculate transformed data and apply distance (all except UniFrac) 
     tsf.res <- pltransform(otus = otus, metadata = metadata, paired = paired, check.input = FALSE)
     D <- switch(method, 
-                braycurtis = braycurtis(tsf.res$tsf.data, binary = binary), 
-                jaccard = jaccard(tsf.res$tsf.data, paired = paired, binary = binary), 
-                kulczynski = kulczynski(tsf.res$tsf.data, paired = paired, binary = binary), 
-                gower = gower(tsf.res$tsf.data, binary = binary)
+                braycurtis = braycurtis(tsf.res, binary = binary), 
+                jaccard = jaccard(tsf.res, paired = paired, binary = binary), 
+                kulczynski = kulczynski(tsf.res, paired = paired, binary = binary), 
+                gower = gower(tsf.res, binary = binary)
                 ) 
   } else {
     ## Calculate paired/longitudinal UniFrac dissimilarities 
     if (is.null(tree)) stop("Tree is required for UniFrac family metrics.")
     if (!is.rooted(tree)) stop("Rooted phylogenetic tree required!") 
-    D <- LUniFrac(otu.tab = otus, tree = tree, gam = gam, metadata = metadata, paired = paired)
+    D <- LUniFrac(otu.tab = otus, metadata = metadata, tree = tree, gam = gam, paired = paired, check.input = FALSE)
   } 
   
   if (paired) {

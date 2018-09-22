@@ -1,0 +1,213 @@
+
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "pldist"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('pldist')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("LUniFrac")
+> ### * LUniFrac
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: LUniFrac
+> ### Title: LUniFrac
+> ### Aliases: LUniFrac
+> 
+> ### ** Examples
+> 
+> data("bal.long.otus")
+> data("bal.long.meta")
+> data("sim.tree")
+> D2.unifrac <- LUniFrac(otu.tab = bal.long.otus, metadata = bal.long.meta, 
++     tree = sim.tree, gam = c(0, 0.5, 1), paired = FALSE, check.input = TRUE)
+> D2.unifrac[, , "d_1"]   # gamma = 1 (quantitative longitudinal transformation)
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.1184031 0.1249098 0.1324864 0.1242423
+subj2 0.1184031 0.0000000 0.1357404 0.1402744 0.0938360
+subj3 0.1249098 0.1357404 0.0000000 0.1708349 0.1037072
+subj4 0.1324864 0.1402744 0.1708349 0.0000000 0.1594022
+subj5 0.1242423 0.0938360 0.1037072 0.1594022 0.0000000
+> D2.unifrac[, , "d_UW"]  # unweighted LUniFrac (qualitative/binary longitudinal transf.)
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.1622297 0.1441074 0.1699795 0.1926159
+subj2 0.1622297 0.0000000 0.1925995 0.2002163 0.1440285
+subj3 0.1441074 0.1925995 0.0000000 0.1558104 0.1439184
+subj4 0.1699795 0.2002163 0.1558104 0.0000000 0.1884480
+subj5 0.1926159 0.1440285 0.1439184 0.1884480 0.0000000
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("pldist")
+> ### * pldist
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: pldist
+> ### Title: pldist
+> ### Aliases: pldist
+> 
+> ### ** Examples
+> 
+> # Gower distance, paired & quantitative transformation 
+> pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "gower")$D
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.4839758 0.4455620 0.5052843 0.5766593
+subj2 0.4839758 0.0000000 0.6109036 0.4404913 0.4576500
+subj3 0.4455620 0.6109036 0.0000000 0.5056862 0.7235955
+subj4 0.5052843 0.4404913 0.5056862 0.0000000 0.3823376
+subj5 0.5766593 0.4576500 0.7235955 0.3823376 0.0000000
+> 
+> # Gower distance, paired & qualitative/binary transformation 
+> pldist(paired.otus, paired.meta, paired = TRUE, binary = TRUE, method = "gower")$D
+      subj1 subj2 subj3 subj4 subj5
+subj1  0.00  0.40  0.50  0.45  0.55
+subj2  0.40  0.00  0.60  0.25  0.45
+subj3  0.50  0.60  0.00  0.45  0.75
+subj4  0.45  0.25  0.45  0.00  0.40
+subj5  0.55  0.45  0.75  0.40  0.00
+> 
+> # Gower distance, longitudinal & quantitative transformation 
+> pldist(bal.long.otus, bal.long.meta, paired = FALSE, binary = FALSE, method = "gower")$D
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.5526350 0.5062275 0.4806651 0.4852043
+subj2 0.5526350 0.0000000 0.5642091 0.7113378 0.5168968
+subj3 0.5062275 0.5642091 0.0000000 0.4284639 0.4316573
+subj4 0.4806651 0.7113378 0.4284639 0.0000000 0.4551940
+subj5 0.4852043 0.5168968 0.4316573 0.4551940 0.0000000
+> 
+> # Gower distance, longitudinal & qualitative/binary transformation 
+> pldist(bal.long.otus, bal.long.meta, paired = FALSE, binary = TRUE, method = "gower")$D
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.5666667 0.5133333 0.4733333 0.5466667
+subj2 0.5666667 0.0000000 0.5600000 0.7200000 0.5533333
+subj3 0.5133333 0.5600000 0.0000000 0.3200000 0.4466667
+subj4 0.4733333 0.7200000 0.3200000 0.0000000 0.4066667
+subj5 0.5466667 0.5533333 0.4466667 0.4066667 0.0000000
+> 
+> # Other distances 
+> pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "bray")$D
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.3923512 0.3118659 0.3903021 0.4750872
+subj2 0.3923512 0.0000000 0.4356975 0.3280185 0.4212443
+subj3 0.3118659 0.4356975 0.0000000 0.3763288 0.5184529
+subj4 0.3903021 0.3280185 0.3763288 0.0000000 0.2913837
+subj5 0.4750872 0.4212443 0.5184529 0.2913837 0.0000000
+> pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "kulczynski")$D
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.6725624 0.4219094 0.9684359 0.8185846
+subj2 0.6725624 0.0000000 0.6443266 1.0000000 0.8281911
+subj3 0.4219094 0.6443266 0.0000000 0.5969082 0.7777403
+subj4 0.9684359 1.0000000 0.5969082 0.0000000 0.8425175
+subj5 0.8185846 0.8281911 0.7777403 0.8425175 0.0000000
+> pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, method = "jaccard")$D
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.7447088 0.5481119 0.9899197 0.8590826
+subj2 0.7447088 0.0000000 0.7693678 1.0000000 0.8709611
+subj3 0.5481119 0.7693678 0.0000000 0.8761344 0.8615110
+subj4 0.9899197 1.0000000 0.8761344 0.0000000 0.9412132
+subj5 0.8590826 0.8709611 0.8615110 0.9412132 0.0000000
+> 
+> # UniFrac additionally requires a phylogenetic tree and gamma values 
+> # (Gamma controls weight placed on abundant lineages) 
+> pldist(paired.otus, paired.meta, paired = TRUE, binary = FALSE, 
++     method = "unifrac", tree = sim.tree, gam = c(0, 0.5, 1))$D 
+, , d_0
+
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.3937068 0.3161156 0.2596360 0.3927642
+subj2 0.3937068 0.0000000 0.4679134 0.2575087 0.4482490
+subj3 0.3161156 0.4679134 0.0000000 0.3402118 0.4702829
+subj4 0.2596360 0.2575087 0.3402118 0.0000000 0.3048324
+subj5 0.3927642 0.4482490 0.4702829 0.3048324 0.0000000
+
+, , d_0.5
+
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.3421997 0.2740330 0.1916925 0.3827689
+subj2 0.3421997 0.0000000 0.4457708 0.2144613 0.4384797
+subj3 0.2740330 0.4457708 0.0000000 0.3024500 0.4450135
+subj4 0.1916925 0.2144613 0.3024500 0.0000000 0.3527522
+subj5 0.3827689 0.4384797 0.4450135 0.3527522 0.0000000
+
+, , d_1
+
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.2897983 0.2225681 0.1514629 0.3688189
+subj2 0.2897983 0.0000000 0.4159268 0.1622736 0.4310636
+subj3 0.2225681 0.4159268 0.0000000 0.2723363 0.4175250
+subj4 0.1514629 0.1622736 0.2723363 0.0000000 0.3163633
+subj5 0.3688189 0.4310636 0.4175250 0.3163633 0.0000000
+
+, , d_UW
+
+          subj1     subj2     subj3     subj4     subj5
+subj1 0.0000000 0.2862445 0.3313996 0.2012705 0.3394885
+subj2 0.2862445 0.0000000 0.3930127 0.1514454 0.3957395
+subj3 0.3313996 0.3930127 0.0000000 0.2627004 0.4641035
+subj4 0.2012705 0.1514454 0.2627004 0.0000000 0.2896324
+subj5 0.3394885 0.3957395 0.4641035 0.2896324 0.0000000
+
+>     
+> 
+> 
+> 
+> cleanEx()
+> nameEx("pltransform")
+> ### * pltransform
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: pltransform
+> ### Title: pltransform
+> ### Aliases: pltransform
+> 
+> ### ** Examples
+> 
+> data("paired.otus")
+> data("paired.meta")
+>  # paired transformation
+> res1 <- pltransform(paired.otus, paired.meta, paired = TRUE, check.input = TRUE) 
+>  # longitudinal transformation 
+> res2 <- pltransform(paired.otus, paired.meta, paired = FALSE, check.input = TRUE) 
+>     
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.292 0.028 0.33 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

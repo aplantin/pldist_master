@@ -19,9 +19,9 @@ Type 'q()' to quit R.
 > library(pldist)
 > 
 > test_check("pldist")
-══ testthat results  ═══════════════════════════════════════════════════════════
+══ testthat results  ═════════════════════════════════════════════════════════════════════════════════════════════
 OK: 58 SKIPPED: 0 FAILED: 0
 > 
 > proc.time()
    user  system elapsed 
-  0.696   0.093   0.799 
+  0.681   0.079   0.777 

@@ -16,17 +16,17 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
 NeedsCompilation: no
-Packaged: 2018-08-29 00:55:03 UTC; anna
-Suggests: knitr, rmarkdown, testthat, devtools
+Packaged: 2018-09-16 18:21:24 UTC; anna
+Suggests: knitr, rmarkdown, testthat, devtools, MiRKAT
 VignetteBuilder: knitr
-Built: R 3.5.1; ; 2018-08-29 01:09:02 UTC; unix
+Built: R 3.5.1; ; 2018-09-16 18:49:08 UTC; unix
 RemoteType: github
 RemoteHost: https://api.github.com
 RemoteRepo: pldist
 RemoteUsername: aplantin
 RemoteRef: master
-RemoteSha: d4683511849738d70e10dddf480d0eb031964439
+RemoteSha: 8564bda75fb9af775258e8f22dc2311e5c0090dc
 GithubRepo: pldist
 GithubUsername: aplantin
 GithubRef: master
-GithubSHA1: d4683511849738d70e10dddf480d0eb031964439
+GithubSHA1: 8564bda75fb9af775258e8f22dc2311e5c0090dc

@@ -22,6 +22,7 @@ kulczynski <- function(tsf.data, paired, binary) {
   
   n = nrow(dat); m = ncol(dat) 
   out.D <- matrix(0, n, n) 
+  rownames(out.D) = colnames(out.D) = rownames(dat)
   
   if (paired) {
     if (binary) {
@@ -41,7 +42,11 @@ kulczynski <- function(tsf.data, paired, binary) {
   } else {  # not paired (longitudinal) 
     for (i in 1:(n-1)) {
       for (j in (i+1):n) {
-        out.D[i,j] = out.D[j,i] = 1 - 0.5 * sum(pmin(dat[i,],dat[j,]) * (1/sum(dat[i,]) + 1/sum(dat[j,])))
+        if (sum(dat[i, ]) == 0 | sum(dat[j, ]) == 0) {
+          out.D[i,j] = out.D[j,i] = 1
+        } else {
+          out.D[i,j] = out.D[j,i] = 1 - 0.5 * sum(pmin(dat[i,],dat[j,]) * (1/sum(dat[i,]) + 1/sum(dat[j,])))
+        }
       }
     }
   }
